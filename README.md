@@ -168,49 +168,36 @@ It doesn't do geolocation itself — it sends a request to a geocoding service (
 By default, geopy uses OpenStreetMap's Nominatim service unless you specify another.
 
 ⚙️ Step-by-Step Workflow (Behind the Scenes)
-🔹 Step 1: You type:
-python
-Copy
-Edit
-geolocator = Nominatim(user_agent="myapp")
-location = geolocator.geocode("New Delhi")
-🔹 Step 2: It sends an HTTP request to this URL:
-pgsql
-Copy
-Edit
-https://nominatim.openstreetmap.org/search?q=New+Delhi&format=json
-This query is:
+🔹 Step 1: You type:  
+geolocator = Nominatim(user_agent="myapp")  
+location = geolocator.geocode("New Delhi")  
+🔹 Step 2: It sends an HTTP request to this URL:    
+https://nominatim.openstreetmap.org/search?q=New+Delhi&format=json  
+This query is:  
 
-"New Delhi" (your input)
+* "New Delhi" (your input)
 
-plus parameters like format=json, optional country codes, etc.
+* plus parameters like format=json, optional country codes, etc.  
 
-🔹 Step 3: Nominatim processes your query:
-Searches OpenStreetMap’s place index
+🔹 Step 3: Nominatim processes your query:  
+Searches OpenStreetMap’s place index  
 
-Tries to match "New Delhi" against its database of cities, regions, landmarks, etc.
+Tries to match "New Delhi" against its database of cities, regions, landmarks, etc.  
 
-Picks the most relevant result
+Picks the most relevant result  
 
-🔹 Step 4: The response (in JSON):
-json
-Copy
-Edit
-[
-  {
-    "place_id": "XXXX",
-    "display_name": "New Delhi, Delhi, India",
-    "lat": "28.6138954",
-    "lon": "77.2090057",
-    ...
-  }
-]
-🔹 Step 5: geopy parses this into a Python object:
-python
-Copy
-Edit
-location.latitude  # → 28.6138954
-location.longitude # → 77.2090057
-location.address   # → "New Delhi, Delhi, India"
-🧠 Summary:
-geopy → sends query to Nominatim → gets JSON response → converts it into easy Python object.
+🔹 Step 4: The response (in JSON):    
+  {  
+    "place_id": "XXXX",  
+    "display_name": "New Delhi, Delhi, India",  
+    "lat": "28.6138954",  
+    "lon": "77.2090057",  
+    ...  
+  }  
+🔹 Step 5: geopy parses this into a Python object:  
+location.latitude  # → 28.6138954  
+location.longitude # → 77.2090057  
+location.address   # → "New Delhi, Delhi, India"  
+
+🧠 Summary:  
+geopy → sends query to Nominatim → gets JSON response → converts it into easy Python object.  
