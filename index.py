@@ -2,7 +2,7 @@ from astral import LocationInfo
 from astral.sun import sun
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo  # For timezone conversion
-from geopy.geocoders import Nominatim
+from geopy.geocoders import Nominatim  # For geocoding
 # Function to calculate sunrise & sunset for the next 7 days
 def get_sun_times(lat, lon, date_str):
     city = LocationInfo(name="New Delhi", region="India", timezone="Asia/Kolkata",latitude=lat, longitude=lon)
